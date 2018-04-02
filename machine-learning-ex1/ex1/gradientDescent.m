@@ -19,9 +19,13 @@ for iter = 1:num_iters
 
 
 
+    x = X(:,2);
+    h = theta(1) + (theta(2)*x);
+    
+    theta_zero = theta(1) - alpha * (1/m) * sum(h-y);
+    theta_one = theta(2) - alpha * (1/m) * sum((h-y) .* x);
 
-
-
+    theta = [theta_zero; theta_one]
 
     % ============================================================
 
@@ -29,5 +33,7 @@ for iter = 1:num_iters
     J_history(iter) = computeCost(X, y, theta);
 
 end
+
+%disp(min(J_history));
 
 end
